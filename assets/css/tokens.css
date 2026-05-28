@@ -1,0 +1,169 @@
+/* ── Design tokens ────────────────────────────────────────────────────────
+   Native iOS-style, clean and minimal. System font stack on purpose. */
+:root {
+  --bg: #ffffff; /* app background */
+  --ink: #1c1c1e; /* primary text */
+  --ink-2: #3a3a3c; /* secondary text */
+  --muted: #8e8e93; /* labels, placeholders */
+  --hair: #e7e7ea; /* separators, borders */
+  --field: #f1f1f3; /* input / search backgrounds */
+  --tap: #f2f2f4; /* pressed / keypad keys */
+  --tint: #d2042d; /* links & interactive accents (cherry, matches the icon) */
+  --danger: #d7263d; /* delete */
+
+  --maxw: 480px; /* phone-width column */
+  --radius: 12px;
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  --mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas,
+    'Liberation Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #f4f4f6; /* surrounds the phone column on wide screens */
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  overscroll-behavior-y: none;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--tint);
+  text-decoration: none;
+}
+
+/* The whole app is constrained to a phone-width column, centred. */
+#__nuxt {
+  min-height: 100dvh;
+}
+
+.app-shell {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  min-height: 100dvh;
+  background: var(--bg);
+  position: relative;
+  box-shadow: 0 0 0 1px var(--hair);
+}
+
+/* ── Shared primitives ─────────────────────────────────────────────────── */
+.nav-btn {
+  color: var(--tint);
+  font-size: 17px;
+  background: none;
+}
+.nav-btn:active {
+  opacity: 0.5;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field {
+  width: 100%;
+  background: var(--field);
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-size: 17px;
+  color: var(--ink);
+}
+.field::placeholder {
+  color: var(--muted);
+}
+.field:focus {
+  outline: 2px solid color-mix(in srgb, var(--tint) 35%, transparent);
+}
+
+/* ── Page slide transition (native push/pop feel) ──────────────────────── */
+.slide-enter-active,
+.slide-leave-active {
+  transition:
+    transform 0.26s ease,
+    opacity 0.26s ease;
+}
+.slide-enter-from {
+  transform: translateX(24px);
+  opacity: 0;
+}
+.slide-leave-to {
+  transform: translateX(-12px);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-enter-active,
+  .slide-leave-active {
+    transition: opacity 0.15s ease;
+  }
+  .slide-enter-from,
+  .slide-leave-to {
+    transform: none;
+  }
+}
+
+.shake {
+  animation: shake 0.42s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-2px);
+  }
+  20%,
+  80% {
+    transform: translateX(4px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-8px);
+  }
+  40%,
+  60% {
+    transform: translateX(8px);
+  }
+}
