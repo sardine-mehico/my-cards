@@ -14,6 +14,11 @@ on:
 permissions:
   contents: read
 
+# Don't let two pushes deploy at the same time; newest wins.
+concurrency:
+  group: cloudflare-pages-deploy
+  cancel-in-progress: true
+
 # Project + subdomain name → https://<PROJECT_NAME>.pages.dev
 env:
   PROJECT_NAME: my-cards
