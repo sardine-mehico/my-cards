@@ -21,7 +21,7 @@ concurrency:
 
 # Project + subdomain name → https://<PROJECT_NAME>.pages.dev
 env:
-  PROJECT_NAME: my-cards
+  PROJECT_NAME: "20260528"
 
 jobs:
   deploy:
