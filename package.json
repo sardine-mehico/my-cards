@@ -3,6 +3,9 @@
   "private": true,
   "type": "module",
   "description": "Local-first loyalty-card PWA. No backend, no cloud, no encryption — your cards live on-device.",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
