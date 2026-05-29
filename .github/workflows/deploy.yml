@@ -22,6 +22,8 @@ concurrency:
 # Project + subdomain name → https://<PROJECT_NAME>.pages.dev
 env:
   PROJECT_NAME: "cards-20260528"
+  # Run the JS actions on Node 24 to clear the Node 20 deprecation warning.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
 jobs:
   deploy:
